@@ -1,13 +1,10 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Restore.Data;
 using Restore.Entities;
 
 namespace Restore.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class ProductsController(StoreContext context) : ControllerBase
+    public class ProductsController(StoreContext context) : BaseApiController
     {
         [HttpGet]
         public async Task<ActionResult<List<Product>>> GetProducts()
