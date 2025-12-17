@@ -3,11 +3,9 @@ using Restore.Entities;
 
 namespace Restore.Data
 {
-    public class StoreContext : DbContext
+    public class StoreContext(DbContextOptions options) : DbContext(options)
     {
-        public StoreContext(DbContextOptions options) : base(options)
-        {
-        }
         public required DbSet<Product> Products { get; set; }
+        public required DbSet<Basket> Baskets { get; set; }
     }
 }
