@@ -8,7 +8,7 @@ const customBaseQuery = fetchBaseQuery({
     credentials: 'include'
 });
 
-type ErrorResponse = | string | {title: string} | {errors: string[]}
+type ErrorResponse = string | {title: string} | {errors: string[]}
 
 const sleep = () => new Promise(resolve => setTimeout(resolve, 1000));
 
@@ -39,11 +39,11 @@ export const baseQueryWithErrorHandling = async (args: string | FetchArgs, api: 
                 break;
             case 404:
                 if (typeof responseData === 'object' && 'title' in responseData)
-                    router.navigate('/not-found')
+                    await router.navigate('/not-found')
                 break;
             case 500:
                 if (typeof responseData === 'object')
-                    router.navigate('/server-error', {state:{error: responseData}})
+                    await router.navigate('/server-error', {state:{error: responseData}})
                 break;  
             default:
                 break;
